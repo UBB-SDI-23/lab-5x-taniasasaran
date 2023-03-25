@@ -1,13 +1,9 @@
 package com.example.lab1jv.controller;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.example.lab1jv.model.Book;
-import com.example.lab1jv.model.BookAuthor;
 import com.example.lab1jv.model.dto.*;
 import com.example.lab1jv.service.BookAuthorService;
 import com.example.lab1jv.service.BookService;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,7 +52,7 @@ class BookController {
     public @ResponseBody  void deleteBook(@PathVariable Long id) {
         List<BookAuthorDTO> books = bookAuthorService.getBookAuthorsByBook(id);
         for(BookAuthorDTO baDTO: books)
-            bookAuthorService.deleteById(baDTO.getId());
+            bookAuthorService.deleteByBothIds(baDTO.getBookId(), baDTO.getAuthorId());
         List<ChapterDTO> chapters = bookService.getChaptersByBookId(id);
         for(ChapterDTO chapter: chapters)
             chapterService.deleteChapter(chapter.getId());
@@ -78,21 +74,22 @@ class BookController {
         return new ResponseEntity<>(bookAuthorService.getAuthorsByBookId(id), HttpStatus.OK);
     }
 
-    @PostMapping("/books/authors")
-    public @ResponseBody void addAuthorToBook(@RequestBody BookAuthorDTO author) {
-        bookAuthorService.createBookAuthor(author);
+    @PostMapping("/books/{bid}/authors")
+    public @ResponseBody void addAuthorToBook(@PathVariable("bid") Long bid, @RequestBody BookAuthorDTO bookauthor) {
+        bookauthor.setBookId(bid);
+        bookAuthorService.createBookAuthor(bookauthor);
     }
 
-    @PutMapping ("/books/{id}/authors")
-    public @ResponseBody void updateAuthorToBook(@PathVariable("id") Long id, @RequestBody BookAuthorDTO author) {
-        bookAuthorService.updateBookAuthorWithId(id, author);
+    @PutMapping ("/books/{bid}/authors/{aid}")
+    public @ResponseBody void updateAuthorToBook(@PathVariable("aid") Long aid, @PathVariable("bid") Long bid,  @RequestBody BookAuthorDTO bookauthor) {
+        bookauthor.setBookId(bid);
+        bookauthor.setAuthorId(aid);
+        bookAuthorService.updateBookAuthorWithId(bid, aid, bookauthor);
     }
 
-    @DeleteMapping("/books/{id}/authors")
-    public @ResponseBody void deleteAuthorFromBook(@PathVariable("id") Long id) {
-        bookAuthorService.deleteById(id);
+    @DeleteMapping("/books/{bid}/authors/{aid}")
+    public @ResponseBody void deleteAuthorFromBook(@PathVariable("aid") Long aid, @PathVariable("bid") Long bid) {
+        bookAuthorService.deleteByBothIds(bid, aid);
     }
-
-
 
 }

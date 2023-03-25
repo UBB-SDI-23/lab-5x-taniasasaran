@@ -1,7 +1,6 @@
 package com.example.lab1jv.controller;
 import java.util.List;
 
-import com.example.lab1jv.model.Author;
 import com.example.lab1jv.model.dto.AuthorDTO;
 import com.example.lab1jv.model.dto.BookAuthorDTO;
 import com.example.lab1jv.model.dto.BookDTO;
@@ -50,7 +49,7 @@ class AuthorController {
     public void deleteAuthor(@PathVariable Long id) {
         List<BookAuthorDTO> books = bookAuthorService.getBookAuthorsByAuthor(id);
         for(BookAuthorDTO baDTO: books)
-            bookAuthorService.deleteById(baDTO.getId());
+            bookAuthorService.deleteByBothIds(baDTO.getBookId(), baDTO.getAuthorId());
         authorService.deleteById(id);
     }
 
@@ -59,18 +58,21 @@ class AuthorController {
         return new ResponseEntity<>(bookAuthorService.getBooksByAuthorId(id), HttpStatus.OK);
     }
 
-    @PostMapping("/authors/{id}/books")
-    public @ResponseBody void addBookToAuthor(@PathVariable("id") Long id, @RequestBody BookAuthorDTO author) {
-        bookAuthorService.createBookAuthor(author);
+    @PostMapping("/authors/{aid}/books")
+    public @ResponseBody void addBookToAuthor(@PathVariable("aid") Long aid, @RequestBody BookAuthorDTO bookauthor) {
+        bookauthor.setAuthorId(aid);
+        bookAuthorService.createBookAuthor(bookauthor);
     }
 
-    @PutMapping ("/authors/{id}/books")
-    public @ResponseBody void updateBookToAuthor(@PathVariable("id") Long id, @RequestBody BookAuthorDTO author) {
-        bookAuthorService.updateBookAuthorWithId(id, author);
+    @PutMapping ("/authors/{aid}/books/{bid}")
+    public @ResponseBody void updateBookToAuthor(@PathVariable("aid") Long aid, @PathVariable("bid") Long bid, @RequestBody BookAuthorDTO bookauthor) {
+        bookauthor.setBookId(bid);
+        bookauthor.setAuthorId(aid);
+        bookAuthorService.updateBookAuthorWithId(bid, aid, bookauthor);
     }
 
-    @DeleteMapping("/authors/{id}/books")
-    public @ResponseBody void deleteBookFromAuthor(@PathVariable("id") Long id) {
-        bookAuthorService.deleteById(id);
+    @DeleteMapping("/authors/{aid}/books/{bid}")
+    public @ResponseBody void deleteBookFromAuthor(@PathVariable("aid") Long aid, @PathVariable("bid") Long bid) {
+        bookAuthorService.deleteByBothIds(bid, aid);
     }
 }

@@ -104,7 +104,7 @@ public class AuthorDTO {
                 author.getAccount().getId());
     }
 
-    public static Author toAuthor(AuthorDTO authorDTO){ //, List<BookAuthor> booksList, Account account) {
+    public static Author toAuthor(AuthorDTO authorDTO){
         Author author = new Author();
         author.setId(authorDTO.getId());
         author.setFirstName(authorDTO.getFirstName());
@@ -112,8 +112,6 @@ public class AuthorDTO {
         author.setCountryOfOrigin(authorDTO.getCountryOfOrigin());
         author.setAgeYears(authorDTO.getAgeYears());
         author.setYearOfDebut(authorDTO.getYearOfDebut());
-//        author.setAccount(account);
-//        author.setBooksList(booksList);
         return author;
     }
 

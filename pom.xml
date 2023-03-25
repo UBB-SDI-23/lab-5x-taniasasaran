@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from bookRepository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab-2-taniasasaran</artifactId>
+	<artifactId>libraryApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab-2-taniasasaran</name>
-	<description>lab-2-taniasasaran</description>
+	<name>libraryApp</name>
+	<description>libraryApp</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

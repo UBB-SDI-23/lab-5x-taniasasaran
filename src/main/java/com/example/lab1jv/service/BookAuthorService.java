@@ -29,8 +29,8 @@ public class BookAuthorService {
                 authorRepository.findById(baDTO.getAuthorId()).get()));
     }
 
-    public void updateBookAuthorWithId(Long id, BookAuthorDTO baDTO) {
-        BookAuthor repoBA = bookAuthorRepository.findById(id).orElse(null);
+    public void updateBookAuthorWithId(Long bid, Long aid, BookAuthorDTO baDTO) {
+        BookAuthor repoBA = getBookAuthorByIds(bid, aid);
         if (repoBA == null) {
             return;
         }
@@ -39,8 +39,21 @@ public class BookAuthorService {
         bookAuthorRepository.save(bookAuthor);
     }
 
-    public void deleteById(Long id) {
-        bookAuthorRepository.deleteById(id);
+    private BookAuthor getBookAuthorByIds(Long bid, Long aid) {
+        for (BookAuthor ba : bookAuthorRepository.findAll()) {
+            if (ba.getBookOrigin().getId().equals(bid) && ba.getAuthorOrigin().getId().equals(aid)) {
+                return ba;
+            }
+        }
+        return null;
+    }
+
+    public void deleteByBothIds(Long bid, Long aid) {
+        BookAuthor ba = getBookAuthorByIds(bid, aid);
+        if (ba == null) {
+            return;
+        }
+        bookAuthorRepository.deleteById(ba.getId());
     }
 
     public List<BookAuthorDTO> getBookAuthorsByBook(Long id) {
