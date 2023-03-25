@@ -25,7 +25,14 @@ public class AccountService {
     }
 
     public void addAccount(AccountDTO account) {
+        passwordValidation(account.getPassword());
         accountRepository.save(AccountDTO.toAccount(account, authorRepository.findById(account.getAuthorId()).get()));
+    }
+
+    private void passwordValidation(String password){
+        if(password.length() < 6){
+            throw new IllegalArgumentException("Password must be at least 8 characters long");
+        }
     }
 
     public AccountDTO findById(Long id) {
@@ -42,10 +49,11 @@ public class AccountService {
 
     public void updateAccountWithId(Long id, AccountDTO accountDTO ) {
         Account repoAccount = accountRepository.findById(id).orElse(null);
-        Account account = AccountDTO.toAccount(accountDTO, authorRepository.findById(accountDTO.getAuthorId()).get());
         if (repoAccount == null) {
             return;
         }
+        passwordValidation(accountDTO.getPassword());
+        Account account = AccountDTO.toAccount(accountDTO, authorRepository.findById(accountDTO.getAuthorId()).get());
         account.setId(repoAccount.getId());
         accountRepository.save(account);
     }

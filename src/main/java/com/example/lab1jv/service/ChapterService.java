@@ -24,8 +24,23 @@ public class ChapterService {
     }
 
     public void addChapter(ChapterDTO newChapter) {
+        pagesValidation(newChapter.getNumberOfPages());
+        scoreValidation(newChapter.getScoreRating());
         chapterRepository.save(ChapterDTO.toChapter(newChapter, bookRepository.findById(newChapter.getBookId()).get()));
     }
+
+    private void pagesValidation(Integer numberOfPages) {
+        if(numberOfPages < 1){
+            throw new IllegalArgumentException("Number of pages must be greater than 0");
+        }
+    }
+
+    private void scoreValidation(Double score){
+        if(score < 0 || score > 5){
+            throw new IllegalArgumentException("Score must be between 0 and 5");
+        }
+    }
+
 
     public ChapterDTO findById(Long id) {
         Chapter chapter = chapterRepository.findById(id).orElse(null);
@@ -36,7 +51,12 @@ public class ChapterService {
     }
 
     public void updateChapterById(Long id, ChapterDTO chapterDTO ) {
-        Chapter repoChapter = chapterRepository.findById(id).get();
+        Chapter repoChapter = chapterRepository.findById(id).orElse(null);
+        if (repoChapter == null) {
+            return;
+        }
+        pagesValidation(chapterDTO.getNumberOfPages());
+        scoreValidation(chapterDTO.getScoreRating());
         Chapter chapter = ChapterDTO.toChapter(chapterDTO, bookRepository.findById(chapterDTO.getBookId()).get());
         chapter.setId(repoChapter.getId());
         chapterRepository.save(chapter);

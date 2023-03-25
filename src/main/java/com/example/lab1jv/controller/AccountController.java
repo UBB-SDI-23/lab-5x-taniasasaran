@@ -1,6 +1,8 @@
 package com.example.lab1jv.controller;
 
+import com.example.lab1jv.model.Message;
 import com.example.lab1jv.model.dto.AccountDTO;
+import com.example.lab1jv.model.dto.BookDTO;
 import com.example.lab1jv.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +17,13 @@ public class AccountController {
         return accountService.getAccounts();
     }
     @PostMapping("/accounts")
-    public void addAccount(@RequestBody AccountDTO newAccount) {
-        accountService.addAccount(newAccount);
+    public @ResponseBody ResponseEntity<Message> addAccount(@RequestBody AccountDTO newAccount) {
+        try{
+            accountService.addAccount(newAccount);
+            return new ResponseEntity<>(new Message("ok"), HttpStatus.CREATED);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
     @GetMapping("/accounts/{id}")
     public @ResponseBody ResponseEntity<AccountDTO> getAccount(@PathVariable Long id) {
@@ -29,8 +36,13 @@ public class AccountController {
     }
 
     @PutMapping("/accounts/{id}")
-    public void updateAccount(@RequestBody AccountDTO newAccount, @PathVariable Long id) {
-        accountService.updateAccountWithId(id, newAccount);
+    public @ResponseBody ResponseEntity<Message>  updateAccount(@RequestBody AccountDTO newAccount, @PathVariable Long id) {
+        try{
+            accountService.updateAccountWithId(id, newAccount);
+            return new ResponseEntity<>(new Message("ok"), HttpStatus.OK);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/accounts/{id}")

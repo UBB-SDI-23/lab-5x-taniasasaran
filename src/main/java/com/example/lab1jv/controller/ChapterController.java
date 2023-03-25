@@ -1,5 +1,6 @@
 package com.example.lab1jv.controller;
 
+import com.example.lab1jv.model.Message;
 import com.example.lab1jv.model.dto.BookDTO;
 import com.example.lab1jv.model.dto.ChapterDTO;
 import com.example.lab1jv.service.ChapterService;
@@ -18,7 +19,6 @@ class ChapterController {
     public @ResponseBody Iterable<ChapterDTO> getAllChapters() {
         return chapterService.getChapters();
     }
-    // end::get-aggregate-root[]
 
     @GetMapping("/chapters/{id}")
     public @ResponseBody ResponseEntity<ChapterDTO> getChapter(@PathVariable Long id) {
@@ -36,13 +36,23 @@ class ChapterController {
     }
 
     @PostMapping("/chapters")
-    public void addChapter(@RequestBody ChapterDTO newChapter) {
-        chapterService.addChapter(newChapter);
+    public @ResponseBody ResponseEntity<Message> addChapter(@RequestBody ChapterDTO newChapter) {
+        try{
+            chapterService.addChapter(newChapter);
+            return new ResponseEntity<>(new Message("ok"), HttpStatus.CREATED);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("/chapters/{id}")
-    public @ResponseBody void updateChapter(@RequestBody ChapterDTO newChapter, @PathVariable Long id) {
-        chapterService.updateChapterById(id, newChapter);
+    public @ResponseBody ResponseEntity<Message> updateChapter(@RequestBody ChapterDTO newChapter, @PathVariable Long id) {
+        try{
+            chapterService.updateChapterById(id, newChapter);
+            return new ResponseEntity<>(new Message("ok"), HttpStatus.CREATED);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/chapters/{id}")
