@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/Documents/sem4/SDI-MPP/lab-3-taniasasaran/src/main/java/com/example/lab1jv</OriginalElement>
+  <nodes>
+    <node x="1515.15625" y="680.0">com.example.lab1jv.controller.BookController</node>
+    <node x="1877.975" y="330.0">com.example.lab1jv.service.BookAuthorService</node>
+    <node x="1577.65625" y="77.0">com.example.lab1jv.service.BookService</node>
+    <node x="711.65625" y="1275.0">com.example.lab1jv.model.dto.BookDTO</node>
+    <node x="445.65625" y="1308.0">com.example.lab1jv.model.dto.BookAvgPagesDTO</node>
+    <node x="2728.90625" y="779.0">com.example.lab1jv.controller.AccountController</node>
+    <node x="737.8359375" y="641.0">com.example.lab1jv.model.dto.ChapterDTO</node>
+    <node x="968.65625" y="1308.0">com.example.lab1jv.model.dto.BookAvgAgeDTO</node>
+    <node x="1270.65625" y="66.0">com.example.lab1jv.service.ChapterService</node>
+    <node x="1708.6875" y="-15.0">com.example.lab1jv.repository.BookRepository</node>
+    <node x="459.8359375" y="597.0">com.example.lab1jv.model.Book</node>
+    <node x="3087.90625" y="-15.0">com.example.lab1jv.AppLibrary</node>
+    <node x="1901.65625" y="156.5">com.example.lab1jv.repository.BookAuthorRepository</node>
+    <node x="2734.90625" y="363.0">com.example.lab1jv.service.AccountService</node>
+    <node x="2378.3" y="144.0">com.example.lab1jv.repository.AuthorRepository</node>
+    <node x="2800.40625" y="156.5">com.example.lab1jv.repository.AccountRepository</node>
+    <node x="2152.046875" y="779.0">com.example.lab1jv.controller.AuthorController</node>
+    <node x="171.49999999999994" y="2609.0">com.example.lab1jv.model.dto.AuthorDTO</node>
+    <node x="-77.5" y="2697.0">com.example.lab1jv.model.Account</node>
+    <node x="1329.65625" y="-15.0">com.example.lab1jv.repository.ChapterRepository</node>
+    <node x="304.5" y="2041.0">com.example.lab1jv.model.dto.BookAuthorDTO</node>
+    <node x="2354.3" y="374.0">com.example.lab1jv.service.AuthorService</node>
+    <node x="35.5" y="1931.0">com.example.lab1jv.model.Author</node>
+    <node x="614.3359375" y="-15.0">com.example.lab1jv.model.Chapter</node>
+    <node x="188.65625" y="1363.0">com.example.lab1jv.model.BookAuthor</node>
+    <node x="-98.0" y="3265.0">com.example.lab1jv.model.dto.AccountDTO</node>
+    <node x="1249.65625" y="385.0">com.example.lab1jv.controller.ChapterController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.lab1jv.service.AuthorService" target="com.example.lab1jv.repository.AuthorRepository" relationship="TO_ONE">
+      <point x="0.0" y="-105.0" />
+      <point x="2508.8" y="332.0" />
+      <point x="2352.0" y="332.0" />
+      <point x="2352.0" y="171.0" />
+      <point x="-130.5" y="0.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.dto.AccountDTO" target="com.example.lab1jv.model.Account" relationship="CREATE">
+      <point x="0.0" y="-204.0" />
+      <point x="0.0" y="215.0" />
+    </edge>
+    <edge source="com.example.lab1jv.service.ChapterService" target="com.example.lab1jv.repository.BookRepository" relationship="TO_ONE">
+      <point x="-2.500000000509317E-4" y="-105.0" />
+      <point x="1414.156" y="40.0" />
+      <point x="1784.688" y="40.0" />
+      <point x="5.000000001018634E-4" y="14.5" />
+    </edge>
+    <edge source="com.example.lab1jv.model.BookAuthor" target="com.example.lab1jv.model.Book" relationship="TO_ONE">
+      <point x="-2.499999999940883E-4" y="-215.0" />
+      <point x="307.156" y="623.5" />
+      <point x="438.0" y="623.5" />
+      <point x="438.0" y="911.0" />
+      <point x="-128.9999375" y="0.0" />
+    </edge>
+    <edge source="com.example.lab1jv.service.AccountService" target="com.example.lab1jv.repository.AccountRepository" relationship="TO_ONE">
+      <point x="14.999749999999949" y="-116.0" />
+      <point x="14.999749999999949" y="14.5" />
+    </edge>
+    <edge source="com.example.lab1jv.model.Book" target="com.example.lab1jv.model.BookAuthor" relationship="TO_MANY">
+      <point x="-128.9999375" y="-302.5" />
+      <point x="98.0" y="608.5" />
+      <point x="98.0" y="1578.0" />
+      <point x="-118.50025" y="0.0" />
+    </edge>
+    <edge source="com.example.lab1jv.controller.AuthorController" target="com.example.lab1jv.service.BookAuthorService" relationship="TO_ONE">
+      <point x="-202.50025000000005" y="0.0" />
+      <point x="2039.0" y="928.0" />
+      <point x="2039.0" y="859.0" />
+      <point x="2099.475" y="859.0" />
+      <point x="0.0" y="149.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.dto.BookAvgAgeDTO" target="com.example.lab1jv.model.Book" relationship="CREATE">
+      <point x="-2.500000000509317E-4" y="-270.0" />
+      <point x="1086.656" y="1250.0" />
+      <point x="588.836" y="1250.0" />
+      <point x="6.250000001273293E-5" y="314.0" />
+    </edge>
+    <edge source="com.example.lab1jv.service.BookAuthorService" target="com.example.lab1jv.repository.AuthorRepository" relationship="TO_ONE">
+      <point x="221.5" y="-141.5" />
+      <point x="2352.0" y="337.5" />
+      <point x="2352.0" y="171.0" />
+      <point x="-130.5" y="0.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.dto.BookAuthorDTO" target="com.example.lab1jv.model.BookAuthor" relationship="CREATE">
+      <point x="-174.5" y="-204.0" />
+      <point x="4.84375" y="215.0" />
+    </edge>
+    <edge source="com.example.lab1jv.controller.ChapterController" target="com.example.lab1jv.service.ChapterService" relationship="TO_ONE">
+      <point x="0.0" y="-94.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.Author" target="com.example.lab1jv.model.BookAuthor" relationship="TO_MANY">
+      <point x="0.0" y="-314.0" />
+      <point x="160.0" y="1578.0" />
+      <point x="-118.50025" y="0.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.dto.ChapterDTO" target="com.example.lab1jv.model.Chapter" relationship="CREATE">
+      <point x="-120.5" y="-270.0" />
+      <point x="18.0" y="281.0" />
+    </edge>
+    <edge source="com.example.lab1jv.controller.BookController" target="com.example.lab1jv.service.BookAuthorService" relationship="TO_ONE">
+      <point x="214.49974999999995" y="0.0" />
+      <point x="2039.0" y="862.0" />
+      <point x="2039.0" y="859.0" />
+      <point x="2099.475" y="859.0" />
+      <point x="0.0" y="149.0" />
+    </edge>
+    <edge source="com.example.lab1jv.service.AccountService" target="com.example.lab1jv.repository.AuthorRepository" relationship="TO_ONE">
+      <point x="-2.500000000509317E-4" y="-116.0" />
+      <point x="2885.906" y="332.0" />
+      <point x="2352.0" y="332.0" />
+      <point x="2352.0" y="171.0" />
+      <point x="-130.5" y="0.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.Author" target="com.example.lab1jv.model.Account" relationship="TO_ONE">
+      <point x="-117.0" y="314.0" />
+      <point x="6.0" y="-215.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.Account" target="com.example.lab1jv.model.Author" relationship="TO_ONE">
+      <point x="-19.0" y="-215.0" />
+      <point x="18.0" y="2007.0" />
+      <point x="-36.0" y="2007.0" />
+      <point x="-36.0" y="1992.0" />
+      <point x="-124.5" y="-253.0" />
+    </edge>
+    <edge source="com.example.lab1jv.controller.AuthorController" target="com.example.lab1jv.service.AuthorService" relationship="TO_ONE">
+      <point x="173.39375000000018" y="-149.0" />
+      <point x="2527.940625" y="648.5" />
+      <point x="2508.8" y="648.5" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="com.example.lab1jv.service.BookAuthorService" target="com.example.lab1jv.repository.BookRepository" relationship="TO_ONE">
+      <point x="15.68100000000004" y="-149.0" />
+      <point x="2115.156" y="40.0" />
+      <point x="1784.688" y="40.0" />
+      <point x="5.000000001018634E-4" y="14.5" />
+    </edge>
+    <edge source="com.example.lab1jv.model.BookAuthor" target="com.example.lab1jv.model.Author" relationship="TO_ONE">
+      <point x="-118.50025" y="-15.0" />
+      <point x="-36.0" y="1563.0" />
+      <point x="-36.0" y="1992.0" />
+      <point x="-124.5" y="-253.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.Book" target="com.example.lab1jv.model.Chapter" relationship="TO_MANY">
+      <point x="121.5" y="-314.0" />
+      <point x="-17.0" y="281.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.Chapter" target="com.example.lab1jv.model.Book" relationship="TO_ONE">
+      <point x="-112.99993749999999" y="0.0" />
+      <point x="438.0" y="266.0" />
+      <point x="438.0" y="911.0" />
+      <point x="-128.9999375" y="0.0" />
+    </edge>
+    <edge source="com.example.lab1jv.service.BookService" target="com.example.lab1jv.repository.BookRepository" relationship="TO_ONE">
+      <point x="-2.500000000509317E-4" y="-94.0" />
+      <point x="1729.656" y="40.0" />
+      <point x="1784.688" y="40.0" />
+      <point x="5.000000001018634E-4" y="14.5" />
+    </edge>
+    <edge source="com.example.lab1jv.service.BookAuthorService" target="com.example.lab1jv.repository.BookAuthorRepository" relationship="TO_ONE">
+      <point x="-99.81874999999991" y="-149.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.lab1jv.service.ChapterService" target="com.example.lab1jv.repository.ChapterRepository" relationship="TO_ONE">
+      <point x="-15.000250000000051" y="-105.0" />
+      <point x="-15.000250000000051" y="14.5" />
+    </edge>
+    <edge source="com.example.lab1jv.model.dto.BookDTO" target="com.example.lab1jv.model.Book" relationship="CREATE">
+      <point x="-2.500000000509317E-4" y="-303.0" />
+      <point x="830.156" y="1250.0" />
+      <point x="588.836" y="1250.0" />
+      <point x="6.250000001273293E-5" y="314.0" />
+    </edge>
+    <edge source="com.example.lab1jv.controller.AccountController" target="com.example.lab1jv.service.AccountService" relationship="TO_ONE">
+      <point x="0.0" y="-83.0" />
+      <point x="0.0" y="116.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.dto.BookAvgPagesDTO" target="com.example.lab1jv.model.Book" relationship="CREATE">
+      <point x="-2.500000000509317E-4" y="-270.0" />
+      <point x="568.656" y="1250.0" />
+      <point x="588.836" y="1250.0" />
+      <point x="6.250000001273293E-5" y="314.0" />
+    </edge>
+    <edge source="com.example.lab1jv.model.dto.AuthorDTO" target="com.example.lab1jv.model.Author" relationship="CREATE">
+      <point x="-5.999999999999943" y="-303.0" />
+      <point x="117.0" y="314.0" />
+    </edge>
+    <edge source="com.example.lab1jv.controller.BookController" target="com.example.lab1jv.service.BookService" relationship="TO_ONE">
+      <point x="0.0" y="-182.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="com.example.lab1jv.controller.BookController" target="com.example.lab1jv.controller.ChapterController" relationship="TO_ONE">
+      <point x="-207.0" y="-182.0" />
+      <point x="108.5" y="94.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.3355287553937433" showDependencies="true" x="1130.695610675039" y="433.1498524332808" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
