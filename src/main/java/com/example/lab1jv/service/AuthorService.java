@@ -1,14 +1,11 @@
 package com.example.lab1jv.service;
 import com.example.lab1jv.model.Author;
-import com.example.lab1jv.model.Book;
 import com.example.lab1jv.model.dto.AuthorDTO;
-import com.example.lab1jv.model.dto.BookDTO;
 import com.example.lab1jv.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
