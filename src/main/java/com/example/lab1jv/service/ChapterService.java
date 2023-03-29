@@ -5,11 +5,15 @@ import com.example.lab1jv.model.dto.BookDTO;
 import com.example.lab1jv.model.dto.ChapterDTO;
 import com.example.lab1jv.repository.BookRepository;
 import com.example.lab1jv.repository.ChapterRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 public class ChapterService {
     @Autowired
@@ -17,6 +21,10 @@ public class ChapterService {
 
     @Autowired
     BookRepository bookRepository;
+
+    public ChapterRepository getChapterRepository() {
+        return chapterRepository;
+    }
 
     public Iterable<ChapterDTO> getChapters(){
         return chapterRepository.findAll().stream()

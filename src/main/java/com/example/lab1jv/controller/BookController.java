@@ -66,7 +66,7 @@ class BookController {
 
     @GetMapping("/books-ordered-avg-pages-chapters")
     public @ResponseBody Iterable<BookAvgPagesDTO> getBooksOrderedByAvgPagesChapters() {
-        return bookAuthorService.getBooksOrderedByAvgPagesPerChapterDesc();
+        return bookService.getBooksOrderedByAvgPagesPerChapterDesc();
     }
 
     @GetMapping("/books/{id}/authors")
