@@ -11,6 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class AppLibraryTests {
 	@Test
 	void contextLoads() {
+//		BookAuthorServiceTest tester = new BookAuthorServiceTest();
+//		tester.testGetBooksOrderedByPages();
+//		tester.testGetBooksOrderedByAvgAge();
 	}
 
 }
