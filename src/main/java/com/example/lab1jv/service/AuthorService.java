@@ -2,19 +2,21 @@ package com.example.lab1jv.service;
 import com.example.lab1jv.model.Author;
 import com.example.lab1jv.model.dto.AuthorDTO;
 import com.example.lab1jv.repository.AuthorRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
-
-    public AuthorRepository getRepo(){ return this.authorRepository; }
 
     public Iterable<AuthorDTO> getAuthors() {
         return authorRepository.findAll().stream().map(AuthorDTO::fromAuthor).collect(Collectors.toList());

@@ -5,20 +5,22 @@ import com.example.lab1jv.model.dto.AccountDTO;
 import com.example.lab1jv.model.dto.AuthorDTO;
 import com.example.lab1jv.repository.AccountRepository;
 import com.example.lab1jv.repository.AuthorRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
     private AuthorRepository authorRepository;
-
-    public AccountRepository getRepo(){ return this.accountRepository; }
 
     public Iterable<AccountDTO> getAccounts() {
         return accountRepository.findAll().stream().map(AccountDTO::fromAccount).collect(Collectors.toList());

@@ -8,12 +8,18 @@ import com.example.lab1jv.model.dto.*;
 import com.example.lab1jv.repository.AuthorRepository;
 import com.example.lab1jv.repository.BookAuthorRepository;
 import com.example.lab1jv.repository.BookRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 public class BookAuthorService {
     @Autowired
@@ -96,15 +102,5 @@ public class BookAuthorService {
             return Double.compare(avgAge1, avgAge2);
         });
         return books.stream().map(BookAvgAgeDTO::fromBook).collect(Collectors.toList());
-    }
-
-    public List<BookAvgPagesDTO> getBooksOrderedByAvgPagesPerChapterDesc() {
-        List<Book> books = bookRepository.findAll();
-        books.sort((b1, b2) -> {
-            double avgPages1 = b1.getChaptersList().stream().mapToDouble(Chapter::getNumberOfPages).average().orElse(0);
-            double avgPages2 = b2.getChaptersList().stream().mapToDouble(Chapter::getNumberOfPages).average().orElse(0);
-            return Double.compare(avgPages2, avgPages1);
-        });
-        return books.stream().map(BookAvgPagesDTO::fromBook).collect(Collectors.toList());
     }
 }
