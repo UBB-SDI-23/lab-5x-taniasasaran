@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
@@ -80,5 +81,10 @@ public class ChapterService {
             return null;
         }
         return BookDTO.fromBook(chapter.getBookOrigin());
+    }
+
+    public List<ChapterDTO> getChaptersByIds(List<Long> chapterIdsList) {
+        return chapterRepository.findAllById(chapterIdsList).stream()
+                .map(ChapterDTO::fromChapter).collect(Collectors.toList());
     }
 }

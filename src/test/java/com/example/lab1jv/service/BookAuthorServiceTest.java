@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import com.example.lab1jv.model.*;
-import com.example.lab1jv.model.dto.AccountDTO;
-import com.example.lab1jv.model.dto.BookAuthorDTO;
 import com.example.lab1jv.model.dto.BookAvgAgeDTO;
-import com.example.lab1jv.model.dto.BookDTO;
 import com.example.lab1jv.repository.AuthorRepository;
 import com.example.lab1jv.repository.BookAuthorRepository;
 import com.example.lab1jv.repository.BookRepository;

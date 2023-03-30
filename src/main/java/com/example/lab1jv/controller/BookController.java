@@ -4,6 +4,7 @@ import java.util.List;
 import com.example.lab1jv.model.dto.*;
 import com.example.lab1jv.service.BookAuthorService;
 import com.example.lab1jv.service.BookService;
+import com.example.lab1jv.service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ class BookController {
     @Autowired
     private BookAuthorService bookAuthorService;
     @Autowired
-    private ChapterController chapterService;
+    private ChapterService chapterService;
 
     @GetMapping("/books")
     Iterable<BookDTO> getAllBooks() {
@@ -31,11 +32,6 @@ class BookController {
             return new ResponseEntity<>(bookDTO,  HttpStatus.OK);
         else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping(path="/books/{id}/chapters", produces = "application/json")
-    public @ResponseBody ResponseEntity<List<ChapterDTO>> getChaptersBook(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(bookService.getChaptersByBookId(id), HttpStatus.OK);
     }
 
     @PostMapping("/books")
@@ -55,8 +51,22 @@ class BookController {
             bookAuthorService.deleteByBothIds(baDTO.getBookId(), baDTO.getAuthorId());
         List<ChapterDTO> chapters = bookService.getChaptersByBookId(id);
         for(ChapterDTO chapter: chapters)
-            chapterService.deleteChapter(chapter.getId());
+            chapterService.deleteById(chapter.getId());
         bookService.deleteById(id);
+    }
+
+    @GetMapping(path="/books/{id}/chapters", produces = "application/json")
+    public @ResponseBody ResponseEntity<List<ChapterDTO>> getChaptersBook(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(bookService.getChaptersByBookId(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/books/{id}/chapters")
+    public @ResponseBody void addListOfChaptersToBook(@PathVariable("id") Long id, @RequestBody List<Long> chapterIdsList) {
+        List<ChapterDTO> chaptersList = chapterService.getChaptersByIds(chapterIdsList);
+        for (ChapterDTO ch : chaptersList) {
+            ch.setBookId(id);
+            chapterService.addChapter(ch);
+        }
     }
 
     @GetMapping("/books-ordered-avg-age-authors")
@@ -79,6 +89,7 @@ class BookController {
         bookauthor.setBookId(bid);
         bookAuthorService.createBookAuthor(bookauthor);
     }
+
 
     @PutMapping ("/books/{bid}/authors/{aid}")
     public @ResponseBody void updateAuthorToBook(@PathVariable("aid") Long aid, @PathVariable("bid") Long bid,  @RequestBody BookAuthorDTO bookauthor) {
