@@ -21,3 +21,9 @@ You will need to:
 - Continue tracking your tasks on Trello (or equivalent). Also track the estimated time (write it before starting the task) and the actual time to completion (write it after finishing the task). Reference the tasks numbers in your commit messages.
 
 Recall that raw SQL queries are still not allowed.
+
+# Lab 5x assignment
+
+To make things easier with deployments, you will be using this repository for a while. Check this link weekly for new requirements: https://github.com/UBB-SDI-23/Lab-5x-assignments/blob/main/README.md 
+
+Commit and push everything to this repository.
