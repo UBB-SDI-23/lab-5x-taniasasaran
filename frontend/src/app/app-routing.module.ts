@@ -7,6 +7,7 @@ import { BookEditComponent } from './components/books/book-edit/book-edit.compon
 import { BookDetailsComponent } from './components/books/book-details/book-details.component';
 import { BookDeleteComponent } from './components/books/book-delete/book-delete.component';
 import { BookAvgAgeStatisticComponent } from './components/books/book-avg-age-statistic/book-avg-age-statistic.component';
+import { BooksNumberChaptersFilterComponent } from './components/books/books-number-chapters-filter/books-number-chapters-filter.component';
 
 const routes: Routes = [
   {path:"",
@@ -39,6 +40,10 @@ const routes: Routes = [
     path:"books-ordered-avg-age-authors",
     component: BookAvgAgeStatisticComponent
   },
+  {
+    path:"books-number-chapters-filter/:n",
+    component: BooksNumberChaptersFilterComponent
+  }
 ];
 
 @NgModule({

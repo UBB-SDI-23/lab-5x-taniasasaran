@@ -3,6 +3,7 @@ import com.example.libraryApp.model.Book;
 import com.example.libraryApp.model.Chapter;
 import com.example.libraryApp.model.dto.BookAvgPagesDTO;
 import com.example.libraryApp.model.dto.BookDTO;
+import com.example.libraryApp.model.dto.BookNrChaptersDTO;
 import com.example.libraryApp.model.dto.ChapterDTO;
 import com.example.libraryApp.repository.BookRepository;
 import lombok.AllArgsConstructor;
@@ -68,5 +69,16 @@ public class BookService {
             return Double.compare(avgPages2, avgPages1);
         });
         return books.stream().map(BookAvgPagesDTO::fromBook).collect(Collectors.toList());
+    }
+
+    public List<BookNrChaptersDTO> getBooksFilteredByNumberOfChapters(int n) {
+        List<Book> books = bookRepository.findAll();
+        books = books.stream().filter(book -> book.getChaptersList().size() > n).collect(Collectors.toList());
+        books.sort((b1, b2) -> {
+            double n1 = b1.getChaptersList().size();
+            double n2 = b2.getChaptersList().size();
+            return Double.compare(n2, n1);
+        });
+        return books.stream().map(BookNrChaptersDTO::fromBook).collect(Collectors.toList());
     }
 }

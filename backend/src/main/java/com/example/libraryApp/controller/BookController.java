@@ -1,5 +1,6 @@
 package com.example.libraryApp.controller;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.libraryApp.model.dto.*;
 import com.example.libraryApp.service.BookAuthorService;
@@ -28,7 +29,9 @@ public class BookController {
 
     @GetMapping(value = "/books")
     public List<BookDTO> getAllBooks() {
-        return bookService.getAllBooks();
+        List<BookDTO> books = bookService.getAllBooks();
+        books = books.stream().limit(100).collect(Collectors.toList());
+        return books;
     }
 
     @GetMapping(value = "/books/{id}")
@@ -78,6 +81,11 @@ public class BookController {
     @GetMapping(value = "/books-ordered-avg-age-authors")
     public @ResponseBody List<BookAvgAgeDTO> getBooksOrderedByAvgAgeAuthors() {
         return bookAuthorService.getBooksOrderedByAvgAge();
+    }
+
+    @GetMapping(value = "/books-number-chapters-filter/{n}")
+    public @ResponseBody List<BookNrChaptersDTO> getBooksFilteredByNumberOfChapters(@PathVariable("n") int n) {
+        return bookService.getBooksFilteredByNumberOfChapters(n);
     }
 
     @GetMapping(value = "/books-ordered-avg-pages-chapters")

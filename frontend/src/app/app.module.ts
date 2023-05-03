@@ -13,6 +13,7 @@ import { BooksOverviewComponent } from './components/books/books-overview/books-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookAvgPagesStatisticComponent } from './components/books/book-avg-pages-statistic/book-avg-pages-statistic.component';
 import { BookAvgAgeStatisticComponent } from './components/books/book-avg-age-statistic/book-avg-age-statistic.component';
+import { BooksNumberChaptersFilterComponent } from './components/books/books-number-chapters-filter/books-number-chapters-filter.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BookAvgAgeStatisticComponent } from './components/books/book-avg-age-st
     BookCreateComponent,
     BookAvgPagesStatisticComponent,
     BookAvgAgeStatisticComponent,
+    BooksNumberChaptersFilterComponent,
   ],
   imports: [
     BrowserModule,

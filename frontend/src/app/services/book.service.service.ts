@@ -7,6 +7,7 @@ import { GenericPage } from '../model/GenericPage';
 import { BookAvgPagesDTO } from '../dto/BookAvgPagesDTO';
 import { BookAvgAgeDTO } from '../dto/BookAvgAgeDTO';
 import { BookCreate } from '../model/BookCreate';
+import { BookNrChaptersDTO } from '../dto/BookNrChaptersDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class BookService {
   // getBooksAvgPages(pageNumber: number, pageSize: number): Observable<GenericPage<BookAvgPagesDTO>> {
   //   return this.http.get<GenericPage<BookAvgPagesDTO>>(environment.apiURL + "/books-avg-page" + `?pageNumber=${pageNumber}` + `&pageSize=${[pageSize]}`);
   // }
+
+  getBooksFilteredNrChapters(n: number): Observable<BookNrChaptersDTO[]> {
+    return this.http.get(environment.apiURL + "/books-number-chapters-filter/" + n.toString()) as Observable<BookNrChaptersDTO[]>;
+  }
 
   getBooksAvgAge(): Observable<BookAvgAgeDTO[]> {
     return this.http.get(environment.apiURL + "/books-ordered-avg-age-authors") as Observable<BookAvgAgeDTO[]>;
