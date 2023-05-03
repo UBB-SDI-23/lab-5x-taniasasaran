@@ -1,4 +1,4 @@
 export const environment = {
-    // apiURL: 'http://3.120.192.33'
-    apiURL: 'http://localhost'
+    apiURL: 'http://34.91.65.173'
+    // apiURL: 'http://localhost'
 };
