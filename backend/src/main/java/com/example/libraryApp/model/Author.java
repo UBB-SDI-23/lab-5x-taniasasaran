@@ -16,17 +16,14 @@ public class Author {
     private Integer yearOfDebut;
     @OneToMany(mappedBy = "authorOrigin", fetch = FetchType.LAZY)
     List<BookAuthor> booksList;
-    @OneToOne(mappedBy = "author")
-    private Account accountAuthor;
 
-    public Author(String firstName, String lastName, String countryOfOrigin, Integer ageYears, Integer yearOfDebut, List<BookAuthor> booksList, Account account) {
+    public Author(String firstName, String lastName, String countryOfOrigin, Integer ageYears, Integer yearOfDebut, List<BookAuthor> booksList) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.countryOfOrigin = countryOfOrigin;
         this.ageYears = ageYears;
         this.yearOfDebut = yearOfDebut;
         this.booksList = booksList;
-        this.accountAuthor = account;
     }
 
     public Author() { }
@@ -45,8 +42,6 @@ public class Author {
     public void setYearOfDebut(Integer yearOfDebut) { this.yearOfDebut = yearOfDebut; }
     public List<BookAuthor> getBooksList() { return booksList; }
     public void setBooksList(List<BookAuthor> booksList) { this.booksList = booksList; }
-    public Account getAccount() { return accountAuthor; }
-    public void setAccount(Account account) { this.accountAuthor = account; }
 
     @Override
     public String toString() {
@@ -58,7 +53,6 @@ public class Author {
                 ", ageYears=" + ageYears +
                 ", yearOfDebut=" + yearOfDebut +
                 ", booksList=" + booksList +
-                ", account=" + accountAuthor +
                 '}';
     }
 
@@ -71,12 +65,11 @@ public class Author {
                 && Objects.equals(countryOfOrigin, author.countryOfOrigin)
                 && Objects.equals(ageYears, author.ageYears)
                 && Objects.equals(yearOfDebut, author.yearOfDebut)
-                && Objects.equals(booksList, author.booksList)
-                && Objects.equals(accountAuthor, author.accountAuthor);
+                && Objects.equals(booksList, author.booksList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, countryOfOrigin, ageYears, yearOfDebut, booksList, accountAuthor);
+        return Objects.hash(id, firstName, lastName, countryOfOrigin, ageYears, yearOfDebut, booksList);
     }
 }

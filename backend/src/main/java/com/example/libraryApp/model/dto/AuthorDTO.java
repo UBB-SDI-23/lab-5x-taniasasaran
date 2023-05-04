@@ -13,9 +13,8 @@ public class AuthorDTO {
     private Integer ageYears;
     private Integer yearOfDebut;
     private List<Long> bookIdsList;
-    private Long accountId;
 
-    public AuthorDTO(Long id, String firstName, String lastName, String countryOfOrigin, Integer ageYears, Integer yearOfDebut, List<Long> bookIdsList, Long accountId) {
+    public AuthorDTO(Long id, String firstName, String lastName, String countryOfOrigin, Integer ageYears, Integer yearOfDebut, List<Long> bookIdsList) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -23,7 +22,6 @@ public class AuthorDTO {
         this.ageYears = ageYears;
         this.yearOfDebut = yearOfDebut;
         this.bookIdsList = bookIdsList;
-        this.accountId = accountId;
     }
 
     public AuthorDTO() { }
@@ -84,14 +82,6 @@ public class AuthorDTO {
         this.bookIdsList = bookIdsList;
     }
 
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
     public static AuthorDTO fromAuthor(Author author) {
         return new AuthorDTO(
                 author.getId(),
@@ -100,8 +90,7 @@ public class AuthorDTO {
                 author.getCountryOfOrigin(),
                 author.getAgeYears(),
                 author.getYearOfDebut(),
-                author.getBooksList().stream().map(BookAuthor::getBookOrigin).map(Book::getId).collect(Collectors.toList()),
-                author.getAccount().getId());
+                author.getBooksList().stream().map(BookAuthor::getBookOrigin).map(Book::getId).collect(Collectors.toList()));
     }
 
     public static Author toAuthor(AuthorDTO authorDTO){

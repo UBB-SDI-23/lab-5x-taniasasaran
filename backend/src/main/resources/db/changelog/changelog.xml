@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="1" author="Liquibase">
+        <createTable tableName="Author">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="firstName" type="varchar"/>
+            <column name="lastName" type="varchar"/>
+            <column name="countryOfOrigin" type="varchar"/>
+            <column name="ageYears" type="int"/>
+            <column name="yearOfDebut" type="int"/>
+        </createTable>
+
+        <createTable tableName="Book">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="titleBook" type="varchar"/>
+            <column name="descriptionTheme" type="varchar"/>
+            <column name="publishYear" type="int"/>
+            <column name="numberOfPages" type="int"/>
+            <column name="sellingPrice" type="float"/>
+        </createTable>
+
+        <createTable tableName="Chapter">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="titleChapter" type="varchar"/>
+            <column name="numberOfPages" type="int"/>
+            <column name="scoreRating" type="float"/>
+            <column name="description" type="varchar"/>
+            <column name="mainCharacter" type="varchar"/>
+            <column name="bookId" type="int">
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="Chapter" baseColumnNames="bookId" constraintName="FK_chapter_book" referencedTableName="Book"
+                                 referencedColumnNames="id"/>
+
+        <createTable tableName="BookAuthor">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="bookId" type="int"/>
+            <column name="authorId" type="int"/>
+            <column name="numberOfPages" type="int"/>
+            <column name="subjectApproached" type="varchar"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="BookAuthor" baseColumnNames="bookId" constraintName="FK_bookauthor_book" referencedTableName="Book"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="BookAuthor" baseColumnNames="authorId" constraintName="FK_bookauthor_author" referencedTableName="Author"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
