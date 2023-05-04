@@ -60,4 +60,9 @@
         <addAutoIncrement tableName="author" columnName="id"/>
         <addAutoIncrement tableName="book_author" columnName="id"/>
     </changeSet>
+    <changeSet id="3" author="Liquibase">
+        <addColumn tableName="chapter">
+            <column name="has_award" type="bool"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
