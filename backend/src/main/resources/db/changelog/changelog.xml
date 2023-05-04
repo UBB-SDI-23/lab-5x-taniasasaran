@@ -54,4 +54,10 @@
         <addForeignKeyConstraint baseTableName="BookAuthor" baseColumnNames="authorId" constraintName="FK_bookauthor_author" referencedTableName="Author"
                                  referencedColumnNames="id"/>
     </changeSet>
+    <changeSet id="2" author="Liquibase">
+        <addAutoIncrement tableName="Book" columnName="id"/>
+        <addAutoIncrement tableName="Chapter" columnName="id"/>
+        <addAutoIncrement tableName="Author" columnName="id"/>
+        <addAutoIncrement tableName="BookAuthor" columnName="id"/>
+    </changeSet>
 </databaseChangeLog>
