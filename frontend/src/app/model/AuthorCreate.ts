@@ -4,5 +4,4 @@ export interface AuthorCreate{
     countryOfOrigin: string;
     ageYears: number;
     yearOfDebut: number;
-    accountId: number;
 }
