@@ -65,4 +65,9 @@
             <column name="has_award" type="bool"/>
         </addColumn>
     </changeSet>
+    <changeSet id="3" author="Liquibase">
+        <addColumn tableName="chapter">
+            <column name="location" type="varchar"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
