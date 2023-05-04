@@ -31,20 +31,14 @@ public class BookAuthorServiceTest {
     private AuthorRepository authorRepository;
     private List<Book> books;
     private List<Author> authors;
-    private List<Account> accounts;
     private List<BookAuthor> bookauthors;
 
     @BeforeEach
     public void setUp() throws RuntimeException {
-        this.accounts = Arrays.asList(new Account("account1", "long-enough-password", "account@mail.com", null),
-                new Account("account2", "long-enough-password", "account@mail.com", null),
-                new Account("account3", "long-enough-password", "account@mail.com", null));
-        for (long i = 0; i < accounts.size(); i++) {
-            accounts.get((int) i).setId(i + 1);
-        }
-        this.authors = Arrays.asList(new Author("firstname1", "lastname", "country", 23, 2010, Arrays.asList(), accounts.get(0)),
-                new Author("firstname2", "lastname", "country", 19, 2010, Arrays.asList(), accounts.get(1)),
-                new Author("firstname3", "lastname", "country", 70, 2010, Arrays.asList(), accounts.get(2)));
+
+        this.authors = Arrays.asList(new Author("firstname1", "lastname", "country", 23, 2010, Arrays.asList()),
+                new Author("firstname2", "lastname", "country", 19, 2010, Arrays.asList()),
+                new Author("firstname3", "lastname", "country", 70, 2010, Arrays.asList()));
         this.books = Arrays.asList(new Book("title1", "description", 2023, 50, 30.1, Arrays.asList(), Arrays.asList()),
                 new Book("title2", "description", 2023, 50, 30.1, Arrays.asList(), Arrays.asList()),
                 new Book("title3", "description", 2023, 50, 30.1, Arrays.asList(), Arrays.asList()),
